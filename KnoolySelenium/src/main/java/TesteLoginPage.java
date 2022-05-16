@@ -32,8 +32,12 @@ public class TesteLoginPage {
 		return dsl.obterMensagemErroLoginInvalido("id-sec-error-user-invalid");
 	}
 	
-	public String elementoWeb() {
+	public String mensagemErroLoginInvalido() {
 		return dsl.idElemento("id-sec-error-user-invalid");
+	}
+	
+	public String botaoValidarCodigo() {
+		return dsl.idElemento("btn-send-password");
 	}
 	
 	public String urlAtual() {

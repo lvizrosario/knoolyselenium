@@ -45,6 +45,13 @@ public class TesteLogin {
 		// Validando login valido
 		Assert.assertEquals("luiz.filho@keeggo.com", testeLoginPage.obterEmailLogin());
 		Assert.assertEquals("Knooly123", testeLoginPage.obterPasswordLogin());
+		
+		// Aguardando 3seg para validar a URL da pagina de validação do tokin
+		WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));				
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(testeLoginPage.botaoValidarCodigo())));
+		
+		// Validando a URL atual
+		Assert.assertEquals("https://knooly-qa.azurewebsites.net/#/verification-code", testeLoginPage.urlAtual());
 	}
 	
 	@Test
@@ -56,8 +63,7 @@ public class TesteLogin {
 		
 		// Aguardando 3seg para que a mensagem de erro seja apresentada
 		WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(3));
-		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(testeLoginPage.elementoWeb())));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(testeLoginPage.mensagemErroLoginInvalido())));
 		
 		// Validando login invalido
 		Assert.assertEquals("luiz.filho@keeggo.com", testeLoginPage.obterEmailLogin());
