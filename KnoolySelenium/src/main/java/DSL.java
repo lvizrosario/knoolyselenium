@@ -20,5 +20,17 @@ public class DSL {
 	public void clicarNoBotao(String id_campo) {
 		browser.findElement(By.id(id_campo)).submit();
 	}
+	
+	public String obterMensagemErroLoginInvalido(String id_campo) {
+		return browser.findElement(By.id(id_campo)).getText();
+	}
+	
+	public String idElemento(String id_campo) {
+		return id_campo;
+	}
+	
+	public String urlAtual() {
+		return browser.getCurrentUrl();
+	}
 
 }

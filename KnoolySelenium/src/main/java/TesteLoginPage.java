@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 
+
 public class TesteLoginPage {
 	
 	private DSL dsl;
@@ -25,6 +26,18 @@ public class TesteLoginPage {
 	
 	public String obterPasswordLogin() {
 		return dsl.obterTexto("txt-password");
+	}
+	
+	public String usuarioInvalido() {
+		return dsl.obterMensagemErroLoginInvalido("id-sec-error-user-invalid");
+	}
+	
+	public String elementoWeb() {
+		return dsl.idElemento("id-sec-error-user-invalid");
+	}
+	
+	public String urlAtual() {
+		return dsl.urlAtual();
 	}
 
 }
