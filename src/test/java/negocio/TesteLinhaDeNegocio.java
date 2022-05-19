@@ -1,11 +1,11 @@
 package negocio;
 
-import login.TesteLogin;
 import login.TesteLoginPage;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 
 public class TesteLinhaDeNegocio {
@@ -26,11 +26,29 @@ public class TesteLinhaDeNegocio {
     @Test
     public void criarLinhaDeNegocioValida() {
         TesteLoginPage testeLoginPage = new TesteLoginPage();
+
+        // Efetuando o login e suas respectivas validações
         testeLoginPage.preencherformularioLogin("luiz.filho@keeggo.com", "Knooly123");
         this.testeLinhaDeNegocioPage = testeLoginPage.efetuarLogin();
+
+        Assert.assertEquals("luiz.filho@keeggo.com", testeLoginPage.obterEmailLogin());
+        Assert.assertEquals("Knooly123", testeLoginPage.obterPasswordLogin());
+
+        // Aguardando 3seg para que o botao da pagina de validação seja apresentado
         testeLoginPage.aguardar(testeLoginPage.botaoValidarCodigo());
         testeLoginPage.setToken("654321");
         testeLoginPage.validarToken();
+
+        // Validando a URL atual e o token
+        Assert.assertEquals("https://knooly-qa.azurewebsites.net/#/verification-code", testeLoginPage.urlAtual());
+        Assert.assertEquals("654321", testeLoginPage.obterToken());
+
+        // Validando a tela inicial pelo nome do usuário logado
+        testeLoginPage.aguardar(testeLoginPage.obterIdUsuarioLogado());
+        Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
+
+        // Cadastrando uma nova linha de negócio
+        testeLinhaDeNegocioPage.adicionarLinhaDeNegocio();
 
     }
 

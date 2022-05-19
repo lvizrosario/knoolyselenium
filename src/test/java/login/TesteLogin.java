@@ -46,7 +46,7 @@ public class TesteLogin {
 	@Test
 	public void acessarTelaLoginInvalido() {
 		// Enviando os dados de login
-		testeLoginPage.preencherformularioLogin("luiz.filho@keeggo.com", "Knooly123");
+		testeLoginPage.preencherformularioLogin("luiz.filho@keeggo.com", "Knooly321");
 		testeLoginPage.efetuarLogin();
 
 		// Aguardando 3seg para que a mensagem de erro seja apresentada
