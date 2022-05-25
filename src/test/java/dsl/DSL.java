@@ -2,6 +2,10 @@ package dsl;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class DSL {
 	
@@ -33,5 +37,10 @@ public class DSL {
 
 	public String urlAtual() {
 		return browser.getCurrentUrl();
+	}
+
+	public void aguardarBy(By by) {
+		WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(8));
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));
 	}
 }

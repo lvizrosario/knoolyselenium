@@ -50,6 +50,9 @@ public class TesteLinhaDeNegocio {
         // Cadastrando uma nova linha de negócio
         testeLinhaDeNegocioPage.adicionarLinhaDeNegocio();
 
+        // Validando a mensagem de cadastro realizado com sucesso
+        Assert.assertEquals("Salvo com sucesso", testeLinhaDeNegocioPage.getMensagemSucesso());
+
     }
 
 }

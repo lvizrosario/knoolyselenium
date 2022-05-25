@@ -2,6 +2,7 @@ package negocio;
 
 import dsl.DSL;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,19 +24,23 @@ public class TesteLinhaDeNegocioPage {
         this.browser.quit();
     }
 
-    public void aguardar(String mensagem) {
-        WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id(mensagem)));
-    }
-
     public void adicionarLinhaDeNegocio() {
         browser.findElement(By.id("btn-menu")).click();
         browser.findElement(By.id("btn-menu-0")).click();
-        aguardar("btn-add-line-business");
+        dsl.aguardarBy(By.id("btn-add-line-business"));
         browser.findElement(By.id("btn-add-line-business")).click();
-        aguardar("mat-dialog-0");
-        dsl.escreverTexto("txt-LineOfBusinessName", "Linha Teste Luiz");
+        dsl.aguardarBy(By.id("mat-dialog-0"));
+        dsl.escreverTexto("txt-LineOfBusinessName", "Linha Teste Luiz 2");
         browser.findElement(By.id("btn-save-add-line-business")).click();
+    }
+
+    public String getMensagemSucesso() {
+        try {
+            dsl.aguardarBy(By.xpath("//span[normalize-space()='Salvo com sucesso']"));
+            return browser.findElement(By.xpath("//span[normalize-space()='Salvo com sucesso']")).getText();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
 }
