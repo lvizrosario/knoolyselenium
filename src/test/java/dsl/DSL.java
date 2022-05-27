@@ -3,7 +3,9 @@ package dsl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -57,4 +59,15 @@ public class DSL {
 			return null;
 		}
 	}
+
+	public void selecionarCombo(String idElemento, String txtCombo) {
+		WebElement element = browser.findElement(By.id(idElemento));
+		Select combo = new Select(element);
+		combo.selectByVisibleText(txtCombo);
+	}
+
+	public void selecionarByXpath(String tag, String txtNome) {
+		browser.findElement(By.xpath("//" + tag + "[normalize-space()='" + txtNome + "']")).click();
+	}
+
 }

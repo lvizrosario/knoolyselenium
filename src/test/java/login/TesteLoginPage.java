@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import projeto.TesteProjetoPage;
 import tag.TesteTagsPage;
 
 import java.time.Duration;
@@ -51,6 +52,11 @@ public class TesteLoginPage {
 	public TesteTagsPage efetuarLoginTags() {
 		dsl.clicarNoBotaoSubmit("id-sec-login__btn");
 		return new TesteTagsPage(browser);
+	}
+
+	public TesteProjetoPage efetuarLoginProjeto() {
+		dsl.clicarNoBotaoSubmit("id-sec-login__btn");
+		return new TesteProjetoPage(browser);
 	}
 
 	public void setToken(String token) {
