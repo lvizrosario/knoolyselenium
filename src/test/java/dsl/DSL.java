@@ -1,6 +1,7 @@
 package dsl;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,8 +24,12 @@ public class DSL {
 		return browser.findElement(By.id(id_campo)).getAttribute("value");
 	}
 
-	public void clicarNoBotao(String id_campo) {
+	public void clicarNoBotaoSubmit(String id_campo) {
 		browser.findElement(By.id(id_campo)).submit();
+	}
+
+	public void clicarNoBotaoClick(String id_campo) {
+		browser.findElement(By.id(id_campo)).click();
 	}
 
 	public String obterMensagemErro(String id_campo) {
@@ -42,5 +47,14 @@ public class DSL {
 	public void aguardarBy(By by) {
 		WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(8));
 		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+	}
+
+	public String getMensagemSucesso(String xPath) {
+		try {
+			aguardarBy(By.xpath(xPath));
+			return browser.findElement(By.xpath(xPath)).getText();
+		} catch (NoSuchElementException e) {
+			return null;
+		}
 	}
 }

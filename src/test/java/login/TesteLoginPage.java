@@ -7,6 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tag.TesteTagsPage;
 
 import java.time.Duration;
 
@@ -38,9 +39,18 @@ public class TesteLoginPage {
 		dsl.escreverTexto("txt-password", password);
 	}
 
-	public TesteLinhaDeNegocioPage efetuarLogin() {
-		dsl.clicarNoBotao("id-sec-login__btn");
+	public void efetuarLogin() {
+		dsl.clicarNoBotaoSubmit("id-sec-login__btn");
+	}
+
+	public TesteLinhaDeNegocioPage efetuarLoginLinhaDenegocio() {
+		dsl.clicarNoBotaoSubmit("id-sec-login__btn");
 		return new TesteLinhaDeNegocioPage(browser);
+	}
+
+	public TesteTagsPage efetuarLoginTags() {
+		dsl.clicarNoBotaoSubmit("id-sec-login__btn");
+		return new TesteTagsPage(browser);
 	}
 
 	public void setToken(String token) {
@@ -48,7 +58,7 @@ public class TesteLoginPage {
 	}
 
 	public void validarToken() {
-		dsl.clicarNoBotao("btn-send-password");
+		dsl.clicarNoBotaoSubmit("btn-send-password");
 
 	}
 

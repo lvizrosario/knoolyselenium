@@ -1,37 +1,34 @@
-package negocio;
+package tag;
 
-import dsl.DSL;
 import login.TesteLoginPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.openqa.selenium.WebDriver;
 
-public class TesteLinhaDeNegocio {
+public class TesteTags {
 
-    private TesteLinhaDeNegocioPage testeLinhaDeNegocioPage;
+    private TesteTagsPage testeTagsPage;
     private WebDriver browser;
-    private DSL dsl;
 
     @Before
     public void before() {
-        this.testeLinhaDeNegocioPage = new TesteLinhaDeNegocioPage(browser);
+        this.testeTagsPage = new TesteTagsPage(browser);
     }
 
     @After
     public void finaliza() {
-        this.testeLinhaDeNegocioPage.fecharBrowser();
+        this.testeTagsPage.fecharBrowser();
     }
 
     @Test
-    public void criarLinhaDeNegocioValida() {
+    public void cadastrarGrupoValido() {
         TesteLoginPage testeLoginPage = new TesteLoginPage();
 
         // Efetuando o login e suas respectivas validações
         testeLoginPage.preencherformularioLogin("luiz.filho@keeggo.com", "Knooly123");
-        this.testeLinhaDeNegocioPage = testeLoginPage.efetuarLoginLinhaDenegocio();
+        this.testeTagsPage = testeLoginPage.efetuarLoginTags();
 
         Assert.assertEquals("luiz.filho@keeggo.com", testeLoginPage.obterEmailLogin());
         Assert.assertEquals("Knooly123", testeLoginPage.obterPasswordLogin());
@@ -49,20 +46,20 @@ public class TesteLinhaDeNegocio {
         testeLoginPage.aguardar(testeLoginPage.obterIdUsuarioLogado());
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
-        // Cadastrando uma nova linha de negócio
-        testeLinhaDeNegocioPage.adicionarLinhaDeNegocio("Teste Luiz 5");
+        // Cadastrando um novo grupo
+        testeTagsPage.cadastrarGrupo("Grupo teste");
 
-        // Validando a mensagem de cadastro realizado com sucesso
-        Assert.assertEquals("Salvo com sucesso", dsl.getMensagemSucesso("//span[normalize-space()='Salvo com sucesso']"));
+        //Validando a mensagem de cadastro realizado com sucesso
+        Assert.assertEquals("Salvo com sucesso", testeTagsPage.getMensagemSucesso("//span[normalize-space()='Salvo com sucesso']"));
     }
 
     @Test
-    public void excluirLinhaDeNegocio() {
+    public void cadastrarTagValida() {
         TesteLoginPage testeLoginPage = new TesteLoginPage();
 
         // Efetuando o login e suas respectivas validações
         testeLoginPage.preencherformularioLogin("luiz.filho@keeggo.com", "Knooly123");
-        this.testeLinhaDeNegocioPage = testeLoginPage.efetuarLoginLinhaDenegocio();
+        this.testeTagsPage = testeLoginPage.efetuarLoginTags();
 
         Assert.assertEquals("luiz.filho@keeggo.com", testeLoginPage.obterEmailLogin());
         Assert.assertEquals("Knooly123", testeLoginPage.obterPasswordLogin());
@@ -80,11 +77,11 @@ public class TesteLinhaDeNegocio {
         testeLoginPage.aguardar(testeLoginPage.obterIdUsuarioLogado());
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
-        // Excluindo linha de negócio
-        testeLinhaDeNegocioPage.excluirLinhaDeNegocio("line-of-business-5");
+        // Cadastrando uma nova Tag
+        testeTagsPage.cadastrarTag("id-page-register-tags-groups-btn-get-tags-1", "Tag - Grupo Teste");
 
-        // Validando a mensagem de exclusão realizada com sucesso
-        Assert.assertEquals("Excluído com sucesso", dsl.getMensagemSucesso("//span[normalize-space()='Excluído com sucesso']"));
+        //Validando a mensagem de cadastro realizado com sucesso
+        Assert.assertEquals("Salvo com sucesso", testeTagsPage.getMensagemSucesso("//span[normalize-space()='Salvo com sucesso']"));
     }
 
 }
