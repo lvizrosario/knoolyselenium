@@ -155,6 +155,6 @@ public class TesteProjeto {
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
         // Adicionando um novo cenário na Sprint
-
+        testeProjetoPage.adicionarCenarioSprint();
     }
 }

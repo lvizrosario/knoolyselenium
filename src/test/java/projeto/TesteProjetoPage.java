@@ -141,6 +141,8 @@ public class TesteProjetoPage {
         dsl.clicarNoBotaoClick("btn-cycle-code");
     }
 
-
+    public void adicionarCenarioSprint() {
+        // As combos não carregam os dados cadastrados dos produtos e subprodutos
+    }
 
 }
