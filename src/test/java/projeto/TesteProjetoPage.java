@@ -43,10 +43,10 @@ public class TesteProjetoPage {
         Thread.sleep(1500);
         browser.findElement(By.xpath("//label[@class='label']//mat-icon[@role='img'][normalize-space()='arrow_drop_down']")).click();
         dsl.aguardarBy(By.xpath("//ul[@class='options ng-star-inserted']"));
-        dsl.selecionarByXpath("li", resProjeto);
+        dsl.clicarByXpath("li", resProjeto);
         browser.findElement(By.xpath("//label[@class='label -dropdown']//mat-icon[@role='img'][normalize-space()='arrow_drop_down']")).click();
         dsl.aguardarBy(By.xpath("//ul[@class='options ng-star-inserted']"));
-        dsl.selecionarByXpath("li", respQualidade);
+        dsl.clicarByXpath("li", respQualidade);
     }
 
     public void nomeSquad(String nomeSquad) {
@@ -65,13 +65,13 @@ public class TesteProjetoPage {
     public void dataInicialProjeto(String dataInicial) {
         dsl.clicarNoBotaoClick("btn-input-start-date");
         dsl.aguardarBy(By.xpath("//table[@role='grid']"));
-        dsl.selecionarByXpath("div", dataInicial);
+        dsl.clicarByXpath("div", dataInicial);
     }
 
     public void dataFinalProjeto(String dataFinal) {
         dsl.clicarNoBotaoClick("btn-input-end-date");
         dsl.aguardarBy(By.xpath("//table[@role='grid']"));
-        dsl.selecionarByXpath("div", dataFinal);
+        dsl.clicarByXpath("div", dataFinal);
     }
 
     public void adicionarProjetoBotao() {
@@ -85,6 +85,19 @@ public class TesteProjetoPage {
         } catch (NoSuchElementException e) {
             return null;
         }
+    }
+
+    public void consultarProjeto(String nomeProjeto) {
+        dsl.clicarNoBotaoClick("btn-menu");
+        dsl.clicarNoBotaoClick("btn-menu-7");
+        dsl.aguardarBy(By.id("input-search-project"));
+        dsl.escreverTexto("input-search-project", nomeProjeto);
+        browser.findElement(By.xpath("//mat-icon[normalize-space()='search']")).click();
+    }
+
+    public String nomeProjeto(String nomeProjeto) throws InterruptedException {
+        Thread.sleep(1000);
+        return dsl.textoByXpath("span", nomeProjeto);
     }
 
 }

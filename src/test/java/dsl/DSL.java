@@ -66,8 +66,12 @@ public class DSL {
 		combo.selectByVisibleText(txtCombo);
 	}
 
-	public void selecionarByXpath(String tag, String txtNome) {
+	public void clicarByXpath(String tag, String txtNome) {
 		browser.findElement(By.xpath("//" + tag + "[normalize-space()='" + txtNome + "']")).click();
+	}
+
+	public String textoByXpath(String tag, String txtNome) {
+		return browser.findElement(By.xpath("//" + tag + "[normalize-space()='" + txtNome + "']")).getText();
 	}
 
 }
