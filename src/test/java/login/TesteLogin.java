@@ -1,6 +1,5 @@
 package login;
 
-import dsl.DSL;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +8,7 @@ import org.junit.Test;
 public class TesteLogin {
 
 	private TesteLoginPage testeLoginPage;
-	private DSL dsl;
+
 
 	@Before
 	public void before() {
