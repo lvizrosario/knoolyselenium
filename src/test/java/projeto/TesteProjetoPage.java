@@ -19,6 +19,12 @@ public class TesteProjetoPage {
         this.browser.quit();
     }
 
+    /**
+     *
+     * FUNCIONALIDADES REFERENTES A PROJETO
+     *
+     */
+
     public void codigoDoProjeto(String codProjeto) {
         dsl.clicarNoBotaoClick("btn-menu");
         dsl.clicarNoBotaoClick("btn-menu-7");
@@ -100,6 +106,12 @@ public class TesteProjetoPage {
         return dsl.textoByXpath("span", nomeProjeto);
     }
 
+    /**
+     *
+     * FUNCIONALIDADES REFERENTES A SPRINT
+     *
+     */
+
     public void adicionarSprint(String nomeProjeto, String nomeSprint) {
         dsl.clicarNoBotaoClick("btn-menu");
         dsl.clicarNoBotaoClick("btn-menu-7");
@@ -128,5 +140,7 @@ public class TesteProjetoPage {
     public void adicionarSprintBotao() {
         dsl.clicarNoBotaoClick("btn-cycle-code");
     }
+
+
 
 }

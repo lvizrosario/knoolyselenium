@@ -103,4 +103,26 @@ public class TesteLoginPage {
 	public String urlAtual() {
 		return dsl.urlAtual();
 	}
+
+	// Alterar Senha
+
+	public void alterarSenha(String senhaAtual, String senhaNova) {
+		dsl.clicarNoBotaoClick("btn-trigger-user-menu");
+		dsl.aguardarBy(By.id("btn-change-password"));
+		dsl.clicarNoBotaoClick("btn-change-password");
+		dsl.aguardarBy(By.id("id-change-password-container"));
+		dsl.escreverTexto("id-change-password-current-password-input", senhaAtual);
+		dsl.escreverTexto("id-change-password-new-password-input", senhaNova);
+		dsl.escreverTexto("id-change-password-new-pass-confirm-input", senhaNova);
+		dsl.clicarNoBotaoClick("id-change-password-btn-update");
+	}
+
+	public String getMensagemSucesso(String mensagem) {
+		try {
+			dsl.aguardarBy(By.xpath("//span[normalize-space()='" + mensagem + "']"));
+			return browser.findElement(By.xpath("//span[normalize-space()='" + mensagem + "']")).getText();
+		} catch (NoSuchElementException e) {
+			return null;
+		}
+	}
 }
