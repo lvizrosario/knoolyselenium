@@ -1,6 +1,5 @@
 package negocio;
 
-import dsl.DSL;
 import login.TesteLoginPage;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,7 +12,6 @@ public class TesteLinhaDeNegocio {
 
     private TesteLinhaDeNegocioPage testeLinhaDeNegocioPage;
     private WebDriver browser;
-    private DSL dsl;
 
     @Before
     public void before() {
@@ -53,7 +51,7 @@ public class TesteLinhaDeNegocio {
         testeLinhaDeNegocioPage.adicionarLinhaDeNegocio("Teste Luiz 6");
 
         // Validando a mensagem de cadastro realizado com sucesso
-        Assert.assertEquals("Salvo com sucesso", dsl.getMensagemSucesso("Salvo com sucesso"));
+        Assert.assertEquals("Salvo com sucesso", testeLinhaDeNegocioPage.getMensagemSucesso("Salvo com sucesso"));
     }
 
     @Test
@@ -84,7 +82,7 @@ public class TesteLinhaDeNegocio {
         testeLinhaDeNegocioPage.excluirLinhaDeNegocio("line-of-business-5");
 
         // Validando a mensagem de exclusão realizada com sucesso
-        Assert.assertEquals("Excluído com sucesso", dsl.getMensagemSucesso("Salvo com sucesso"));
+        Assert.assertEquals("Excluído com sucesso", testeLinhaDeNegocioPage.getMensagemSucesso("Salvo com sucesso"));
     }
 
 }

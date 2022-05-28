@@ -2,6 +2,7 @@ package negocio;
 
 import dsl.DSL;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class TesteLinhaDeNegocioPage {
@@ -39,6 +40,15 @@ public class TesteLinhaDeNegocioPage {
         dsl.clicarNoBotaoClick("btn-line-of-business-delete");
         dsl.aguardarBy(By.id("mat-dialog-0"));
         dsl.clicarNoBotaoClick("btn-line-of-business-yes");
+    }
+
+    public String getMensagemSucesso(String mensagem) {
+        try {
+            dsl.aguardarBy(By.xpath("//span[normalize-space()='" + mensagem + "']"));
+            return browser.findElement(By.xpath("//span[normalize-space()='" + mensagem + "']")).getText();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 
 }
