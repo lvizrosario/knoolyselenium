@@ -50,10 +50,10 @@ public class TesteLinhaDeNegocio {
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
         // Cadastrando uma nova linha de negócio
-        testeLinhaDeNegocioPage.adicionarLinhaDeNegocio("Teste Luiz 5");
+        testeLinhaDeNegocioPage.adicionarLinhaDeNegocio("Teste Luiz 6");
 
         // Validando a mensagem de cadastro realizado com sucesso
-        Assert.assertEquals("Salvo com sucesso", dsl.getMensagemSucesso("//span[normalize-space()='Salvo com sucesso']"));
+        Assert.assertEquals("Salvo com sucesso", dsl.getMensagemSucesso("Salvo com sucesso"));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class TesteLinhaDeNegocio {
         testeLinhaDeNegocioPage.excluirLinhaDeNegocio("line-of-business-5");
 
         // Validando a mensagem de exclusão realizada com sucesso
-        Assert.assertEquals("Excluído com sucesso", dsl.getMensagemSucesso("//span[normalize-space()='Excluído com sucesso']"));
+        Assert.assertEquals("Excluído com sucesso", dsl.getMensagemSucesso("Salvo com sucesso"));
     }
 
 }

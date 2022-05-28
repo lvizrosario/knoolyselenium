@@ -51,10 +51,10 @@ public class DSL {
 		wait.until(ExpectedConditions.presenceOfElementLocated(by));
 	}
 
-	public String getMensagemSucesso(String xPath) {
+	public String getMensagemSucesso(String mensagem) {
 		try {
-			aguardarBy(By.xpath(xPath));
-			return browser.findElement(By.xpath(xPath)).getText();
+			aguardarBy(By.xpath("//span[normalize-space()='" + mensagem + "']"));
+			return browser.findElement(By.xpath("//span[normalize-space()='" + mensagem + "']")).getText();
 		} catch (NoSuchElementException e) {
 			return null;
 		}

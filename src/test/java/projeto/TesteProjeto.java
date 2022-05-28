@@ -49,8 +49,8 @@ public class TesteProjeto {
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
         // Validando a criação de um novo projeto
-        testeProjetoPage.codigoDoProjeto("111");
-        testeProjetoPage.nomeDoProjeto("Projeto Luiz");
+        testeProjetoPage.codigoDoProjeto("112");
+        testeProjetoPage.nomeDoProjeto("Projeto Luiz 2");
         testeProjetoPage.tamanhoProjeto("Pequeno");
         testeProjetoPage.tipoProjeto("Agile");
         testeProjetoPage.respProjetoEQualidade("Luiz Filho", "Alexandre Abreu");
@@ -62,7 +62,7 @@ public class TesteProjeto {
         testeProjetoPage.adicionarProjetoBotao();
 
         // Validando mensagem de sucesso
-        Assert.assertEquals("Projeto criado com sucesso!", testeProjetoPage.getMensagemSucesso("//span[normalize-space()='Projeto criado com sucesso!']"));
+        Assert.assertEquals("Projeto criado com sucesso!", testeProjetoPage.getMensagemSucesso("Projeto criado com sucesso!"));
     }
 
     @Test
@@ -94,5 +94,39 @@ public class TesteProjeto {
 
         // Validando se o projeto foi consultado corretamente
         Assert.assertEquals("Projeto Luiz", testeProjetoPage.nomeProjeto("Projeto Luiz"));
+    }
+
+    @Test
+    public void adicionarSprintValida() {
+        TesteLoginPage testeLoginPage = new TesteLoginPage();
+
+        // Efetuando o login e suas respectivas validações
+        testeLoginPage.preencherformularioLogin("luiz.filho@keeggo.com", "Knooly123");
+        this.testeProjetoPage = testeLoginPage.efetuarLoginProjeto();
+
+        Assert.assertEquals("luiz.filho@keeggo.com", testeLoginPage.obterEmailLogin());
+        Assert.assertEquals("Knooly123", testeLoginPage.obterPasswordLogin());
+
+        // Aguardando 3seg para que o botao da pagina de validação seja apresentado
+        testeLoginPage.aguardar(testeLoginPage.botaoValidarCodigo());
+        testeLoginPage.setToken("654321");
+        testeLoginPage.validarToken();
+
+        // Validando a URL atual e o token
+        Assert.assertEquals("https://knooly-qa.azurewebsites.net/#/verification-code", testeLoginPage.urlAtual());
+        Assert.assertEquals("654321", testeLoginPage.obterToken());
+
+        // Validando a tela inicial pelo nome do usuário logado
+        testeLoginPage.aguardar(testeLoginPage.obterIdUsuarioLogado());
+        Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
+
+        // Adicionando uma nova sprint válida
+        testeProjetoPage.adicionarSprint("Projeto Luiz", "Sprint Luiz");
+        testeProjetoPage.dataInicialSprint("27");
+        testeProjetoPage.dataFinalSprint("30");
+        testeProjetoPage.adicionarSprintBotao();
+
+        // Validando a mensagem de sucesso ao criar Sprint
+        Assert.assertEquals("Adicionado com sucesso", testeProjetoPage.getMensagemSucesso("Adicionado com sucesso"));
     }
 }

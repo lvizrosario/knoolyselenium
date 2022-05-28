@@ -47,10 +47,10 @@ public class TesteTags {
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
         // Cadastrando um novo grupo
-        testeTagsPage.cadastrarGrupo("Grupo teste");
+        testeTagsPage.cadastrarGrupo("Grupo teste 1");
 
         //Validando a mensagem de cadastro realizado com sucesso
-        Assert.assertEquals("Salvo com sucesso", testeTagsPage.getMensagemSucesso("//span[normalize-space()='Salvo com sucesso']"));
+        Assert.assertEquals("Salvo com sucesso", testeTagsPage.getMensagemSucesso("Salvo com sucesso"));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class TesteTags {
         testeTagsPage.cadastrarTag("id-page-register-tags-groups-btn-get-tags-1", "Tag - Grupo Teste");
 
         //Validando a mensagem de cadastro realizado com sucesso
-        Assert.assertEquals("Salvo com sucesso", testeTagsPage.getMensagemSucesso("//span[normalize-space()='Salvo com sucesso']"));
+        Assert.assertEquals("Salvo com sucesso", testeTagsPage.getMensagemSucesso("Salvo com sucesso"));
     }
 
 }

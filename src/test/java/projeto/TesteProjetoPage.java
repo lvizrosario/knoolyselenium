@@ -78,10 +78,10 @@ public class TesteProjetoPage {
         dsl.clicarNoBotaoClick("btn-save-project");
     }
 
-    public String getMensagemSucesso(String xPath) {
+    public String getMensagemSucesso(String mensagem) {
         try {
-            dsl.aguardarBy(By.xpath(xPath));
-            return browser.findElement(By.xpath(xPath)).getText();
+            dsl.aguardarBy(By.xpath("//span[normalize-space()='" + mensagem + "']"));
+            return browser.findElement(By.xpath("//span[normalize-space()='" + mensagem + "']")).getText();
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -98,6 +98,35 @@ public class TesteProjetoPage {
     public String nomeProjeto(String nomeProjeto) throws InterruptedException {
         Thread.sleep(1000);
         return dsl.textoByXpath("span", nomeProjeto);
+    }
+
+    public void adicionarSprint(String nomeProjeto, String nomeSprint) {
+        dsl.clicarNoBotaoClick("btn-menu");
+        dsl.clicarNoBotaoClick("btn-menu-7");
+        dsl.aguardarBy(By.xpath("//tbody"));
+        dsl.clicarByXpath("span", nomeProjeto);
+        dsl.aguardarBy(By.id("project-type"));
+        dsl.clicarNoBotaoClick("project-type");
+        dsl.aguardarBy(By.id("id-cycles-new"));
+        dsl.clicarNoBotaoClick("id-cycles-new");
+        dsl.aguardarBy(By.id("input-cycle-name"));
+        dsl.escreverTexto("input-cycle-name", nomeSprint);
+    }
+
+    public void dataInicialSprint(String dataInicial) {
+        dsl.clicarNoBotaoClick("button-add-cycle-planned-start-date");
+        dsl.aguardarBy(By.xpath("//table[@role='grid']"));
+        dsl.clicarByXpath("div", dataInicial);
+    }
+
+    public void dataFinalSprint(String dataFinal) {
+        dsl.clicarNoBotaoClick("button-add-cycle-planned-end-date");
+        dsl.aguardarBy(By.xpath("//table[@role='grid']"));
+        dsl.clicarByXpath("div", dataFinal);
+    }
+
+    public void adicionarSprintBotao() {
+        dsl.clicarNoBotaoClick("btn-cycle-code");
     }
 
 }
