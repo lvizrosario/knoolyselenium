@@ -2,11 +2,15 @@ package projeto;
 
 import dsl.DSL;
 import login.TesteLoginPage;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+
+import java.io.IOException;
+
 
 public class TesteProjeto {
 
@@ -15,12 +19,13 @@ public class TesteProjeto {
     private DSL dsl;
 
     @Before
-    public void before() {
+    public void inicializa() {
         this.testeProjetoPage = new TesteProjetoPage(browser);
     }
 
     @After
-    public void finaliza() {
+    public void finaliza() throws IOException {
+
         this.testeProjetoPage.fecharBrowser();
     }
 
@@ -49,7 +54,7 @@ public class TesteProjeto {
         Assert.assertEquals("Luiz Filho", testeLoginPage.obterNomeUsuarioLogado());
 
         // Validando a criação de um novo projeto
-        testeProjetoPage.codigoDoProjeto("112");
+        testeProjetoPage.codigoDoProjeto("116");
         testeProjetoPage.nomeDoProjeto("Projeto Luiz 2");
         testeProjetoPage.tamanhoProjeto("Pequeno");
         testeProjetoPage.tipoProjeto("Agile");

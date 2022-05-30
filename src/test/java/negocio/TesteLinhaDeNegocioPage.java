@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class TesteLinhaDeNegocioPage {
 
     private final WebDriver browser;
@@ -15,7 +17,8 @@ public class TesteLinhaDeNegocioPage {
         dsl = new DSL(this.browser);
     }
 
-    public void fecharBrowser() {
+    public void fecharBrowser() throws IOException {
+        dsl.screenShot();
         this.browser.quit();
     }
 

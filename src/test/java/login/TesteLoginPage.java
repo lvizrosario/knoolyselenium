@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import projeto.TesteProjetoPage;
 import tag.TesteTagsPage;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class TesteLoginPage {
@@ -20,13 +21,14 @@ public class TesteLoginPage {
 
 	public TesteLoginPage() {
 		browser = new ChromeDriver();
-		this.browser.navigate().to(URL_LOGIN);
 		browser.manage().window().setPosition(new Point(350, 50));
 		browser.manage().window().setSize(new Dimension(1280, 900));
+		this.browser.navigate().to(URL_LOGIN);
 		dsl = new DSL(browser);
 	}
 
-	public void fecharBrowser() {
+	public void fecharBrowser() throws IOException {
+		dsl.screenShot();
 		this.browser.quit();
 	}
 

@@ -1,9 +1,20 @@
 package projeto;
 
 import dsl.DSL;
+import org.apache.commons.io.FileUtils;
+import org.junit.Rule;
+import org.junit.rules.TestName;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.io.IOException;
 
 public class TesteProjetoPage {
 
@@ -15,7 +26,8 @@ public class TesteProjetoPage {
         dsl = new DSL(this.browser);
     }
 
-    public void fecharBrowser() {
+    public void fecharBrowser() throws IOException {
+        dsl.screenShot();
         this.browser.quit();
     }
 
@@ -46,7 +58,7 @@ public class TesteProjetoPage {
     }
 
     public void respProjetoEQualidade(String resProjeto, String respQualidade) throws InterruptedException {
-        Thread.sleep(1500);
+        Thread.sleep(2000);
         browser.findElement(By.xpath("//label[@class='label']//mat-icon[@role='img'][normalize-space()='arrow_drop_down']")).click();
         dsl.aguardarBy(By.xpath("//ul[@class='options ng-star-inserted']"));
         dsl.clicarByXpath("li", resProjeto);

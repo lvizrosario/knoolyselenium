@@ -7,18 +7,20 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class TesteTags {
 
     private TesteTagsPage testeTagsPage;
     private WebDriver browser;
 
     @Before
-    public void before() {
+    public void inicializa() {
         this.testeTagsPage = new TesteTagsPage(browser);
     }
 
     @After
-    public void finaliza() {
+    public void finaliza() throws IOException {
         this.testeTagsPage.fecharBrowser();
     }
 

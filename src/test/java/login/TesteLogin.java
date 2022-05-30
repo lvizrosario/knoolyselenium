@@ -5,18 +5,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 public class TesteLogin {
 
 	private TesteLoginPage testeLoginPage;
 
-
 	@Before
-	public void before() {
+	public void inicializa() {
 		this.testeLoginPage = new TesteLoginPage();
 	}
 	
 	@After
-	public void finaliza() {
+	public void finaliza() throws IOException {
 		this.testeLoginPage.fecharBrowser();
 	}
 	

@@ -8,18 +8,20 @@ import org.junit.Test;
 
 import org.openqa.selenium.WebDriver;
 
+import java.io.IOException;
+
 public class TesteLinhaDeNegocio {
 
     private TesteLinhaDeNegocioPage testeLinhaDeNegocioPage;
     private WebDriver browser;
 
     @Before
-    public void before() {
+    public void inicializa() {
         this.testeLinhaDeNegocioPage = new TesteLinhaDeNegocioPage(browser);
     }
 
     @After
-    public void finaliza() {
+    public void finaliza() throws IOException {
         this.testeLinhaDeNegocioPage.fecharBrowser();
     }
 
